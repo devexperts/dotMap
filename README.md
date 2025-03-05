@@ -1065,9 +1065,3 @@ Don't forget to give the project a star! Thanks again!
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push source feature/AmazingFeature`)
 5. Open a Pull Request
-
-## Contact
-
-Sergey Aseev - [Serg046](https://github.com/Serg046)
-
-Project Link: [https://github.com/devexperts/dotmap](https://github.com/devexperts/dotmap)
