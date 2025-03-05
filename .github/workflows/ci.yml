@@ -27,19 +27,13 @@ jobs:
         fetch-depth: 0
 
     - name: Install .NET SDK
-      if: ${{ matrix.os }} == 'ubuntu-latest'
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 2.0.x
-
-    - name: Install .NET SDK
-      if: ${{ matrix.os }} == 'macos-latest'
+      if: matrix.os == 'macos-latest'
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 6.x
 
     - name: Install libssl
-      if: ${{ matrix.os }} == 'ubuntu-latest'
+      if: matrix.os == 'ubuntu-latest'
       run: sudo apt -y install libssl3
 
     - name: Build and test
