@@ -5,6 +5,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="!$([MSBuild]::IsOsPlatform('OSX'))">
         <TargetFrameworks>netcoreapp2.0;net461;</TargetFrameworks>
+        <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
     </PropertyGroup>
     <PropertyGroup>
         <Nullable>enable</Nullable>
