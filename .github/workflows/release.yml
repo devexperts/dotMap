@@ -48,5 +48,4 @@ jobs:
     - name: Push and save the new version
       uses: ad-m/github-push-action@master
       with:
-        branch: ${{ github.head_ref }}
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref_name }}
