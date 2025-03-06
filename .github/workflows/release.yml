@@ -10,6 +10,8 @@ jobs:
   release:
     name: Release v${{github.event.inputs.release-version}}
     runs-on: windows-latest
+    permissions:
+      contents: write
     
     steps:
     - name: Checkout
