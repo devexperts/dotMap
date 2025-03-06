@@ -1,10 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup Condition="$([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64'">
-        <TargetFrameworks>net6;</TargetFrameworks>
+    <PropertyGroup Condition="$([MSBuild]::IsOsPlatform('Windows'))">
+        <TargetFramework>net461</TargetFramework>
     </PropertyGroup>
-    <PropertyGroup Condition="!$([MSBuild]::IsOsPlatform('OSX'))">
-        <TargetFrameworks>netcoreapp2.0;net461;</TargetFrameworks>
+    <PropertyGroup Condition="$([MSBuild]::IsOsPlatform('Linux'))">
+        <TargetFramework>netcoreapp2.0</TargetFramework>
+        <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+    </PropertyGroup>
+    <PropertyGroup Condition="$([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'Arm64'">
+        <TargetFramework>net6</TargetFramework>
+    </PropertyGroup>
+    <PropertyGroup Condition="$([MSBuild]::IsOsPlatform('OSX')) AND '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)' == 'x64'">
+        <TargetFramework>netcoreapp2.0</TargetFramework>
+        <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
     </PropertyGroup>
     <PropertyGroup>
         <Nullable>enable</Nullable>
@@ -18,15 +25,18 @@
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="6.12.0" />
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.3" />
         <PackageReference Include="xunit" Version="2.7.0" />
-        <PackageReference Include="coverlet.collector" Version="6.0.2">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
             <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\dotMap\dotMap.csproj" OutputItemType="Analyzer" />
+    </ItemGroup>
+    <ItemGroup Condition="$([MSBuild]::IsOsPlatform('Windows'))">
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 </Project>
