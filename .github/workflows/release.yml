@@ -1,16 +1,14 @@
 name: Release
-
 on:
   workflow_dispatch:
     inputs:
       release-version:
         description: "Release version"
-        default: "1.0.0"
+        default: "1.0.1"
 
 jobs:
-
-  build-and-test:
-  
+  release:
+    name: Release v${{github.event.inputs.release-version}}
     runs-on: windows-latest
     
     steps:
@@ -19,5 +17,34 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Build and test
-      run: dotnet test
+    - name: Set the package release version
+      uses: richardrigutins/replace-in-files@v2
+      with:
+        files: 'dotMap/dotMap.csproj'
+        search-text: '<Version>.*</Version>'
+        replacement-text: '<Version>${{github.event.inputs.release-version}}</Version>'
+
+    - name: Build
+      run: dotnet build -c Release
+
+    - name: Test
+      run: dotnet test -c Release --no-build
+
+    - name: Set the new job version
+      uses: richardrigutins/replace-in-files@v2
+      with:
+        files: '.github/workflows/release.yml'
+        search-text: 'default: ".*"'
+        replacement-text: 'default: "{{github.event.inputs.release-version}}"'
+
+    - name: Commit the new version
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -a -m "Release v${{github.event.inputs.release-version}}"
+        
+    - name: Push and save the new version
+      uses: ad-m/github-push-action@master
+      with:
+        branch: ${{ github.head_ref }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
