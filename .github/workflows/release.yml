@@ -32,13 +32,6 @@ jobs:
     - name: Test
       run: dotnet test -c Release --no-build
 
-    - name: Set the new job version
-      uses: richardrigutins/replace-in-files@v2
-      with:
-        files: '.github/workflows/release.yml'
-        search-text: 'default: ".*"'
-        replacement-text: 'default: "{{github.event.inputs.release-version}}"'
-
     - name: Commit the new version
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
