@@ -1,23 +1,86 @@
 name: Release
-
 on:
   workflow_dispatch:
     inputs:
       release-version:
-        description: "Release version"
-        default: "1.0.0"
+        description: 'Release version'
+        required: true
+        default: '0.0.1'
+  push:
+    tags:        
+      - '*'
+
+env:
+  release-version: ${{ github.event.inputs.release-version || github.ref_name }}
 
 jobs:
+  test:
+    name: Test ${{github.ref_name}}
+    runs-on: ubuntu-latest
 
-  build-and-test:
-  
-    runs-on: windows-latest
+    steps:    
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        ref: main
+
+    - name: Check permissions
+      if: github.event.inputs.release-version && github.actor != 'Serg046'
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh run cancel ${{ github.run_id }} && gh run watch ${{ github.run_id }}
+        exit 0
+
+    - name: Install .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          2.x
+          9.x
+
+    - name: Install libssl
+      run: |
+        wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+        sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
+
+    - name: Test
+      run: dotnet test
+
+  release:
+    name: Release ${{github.ref_name}}
+    needs: test
+    runs-on: ubuntu-latest
     
     steps:
     - name: Checkout
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        ref: main
 
-    - name: Build and test
-      run: dotnet test
+    - name: Set the package release version
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+        find: "<Version>.*</Version>"
+        replace: "<Version>${{env.release-version}}</Version>"
+        include: "dotMap/dotMap.csproj"
+        regex: true
+
+    - name: Build and pack
+      run: dotnet pack dotMap/dotMap.csproj -c Release
+
+    - name: Publish artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: NuGet packages
+        path: dotMap/**/*.nupkg
+
+    - name: Save and push the new version
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add dotMap/dotMap.csproj
+        git commit -m "Release v${{env.release-version}}"
+        git push

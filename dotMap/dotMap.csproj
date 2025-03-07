@@ -6,8 +6,20 @@
     <ImplicitUsings>true</ImplicitUsings>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-	<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-	<Configurations>Debug;Release</Configurations>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <Configurations>Debug;Release</Configurations>
+    <PackageId>dotMap</PackageId>
+    <Title>dotMap</Title>
+    <Version>0.0.0</Version>
+    <Description>Convention-based object-to-object compile time mapper for .NET</Description>
+    <Authors>Sergey Aseev (Serg046)</Authors>
+    <Company>Devexperts</Company>
+    <PackageProjectUrl>https://github.com/devexperts/dotMap</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/devexperts/dotMap</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>dotMap mapping mapper automapper auto-mapper auto-mapping</PackageTags>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
