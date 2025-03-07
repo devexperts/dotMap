@@ -19,7 +19,6 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>dotMap mapping mapper automapper auto-mapper auto-mapping</PackageTags>
     <IncludeSymbols>false</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
