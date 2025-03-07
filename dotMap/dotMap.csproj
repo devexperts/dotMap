@@ -18,7 +18,7 @@
     <RepositoryUrl>https://github.com/devexperts/dotMap</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>dotMap mapping mapper automapper auto-mapper auto-mapping</PackageTags>
-    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSymbols>false</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
