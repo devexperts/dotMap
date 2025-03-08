@@ -2,7 +2,6 @@
 
 [![NuGet](https://img.shields.io/nuget/v/dotMap)](https://www.nuget.org/packages/dotMap)
 [![License](https://img.shields.io/badge/LICENSE-MPL_2.0-green)](LICENSE)
-[![NuGet Downloads](https://img.shields.io/nuget/dt/dotMap)](https://www.nuget.org/packages/dotMap)
 
 ![Logo](docs/images/logo.png)
 
