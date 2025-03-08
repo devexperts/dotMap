@@ -71,11 +71,14 @@ jobs:
     - name: Build and pack
       run: dotnet pack dotMap/dotMap.csproj -c Release
 
+    - name: Publish to nuget.org
+      run: dotnet nuget push dotMap/bin/Release/dotMap.${{env.release-version}}.nupkg --api-key "${{secrets.NUGET_API_KEY}}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+
     - name: Publish artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: NuGet packages
-        path: dotMap/**/*.nupkg
+        name: NuGet package
+        path: dotMap/bin/Release/dotMap.${{env.release-version}}.nupkg
 
     - name: Save and push the new version
       run: |
