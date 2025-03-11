@@ -3,7 +3,7 @@
 [![NuGet](https://img.shields.io/nuget/v/dotMap)](https://www.nuget.org/packages/dotMap)
 [![License](https://img.shields.io/badge/LICENSE-MPL_2.0-green)](LICENSE)
 
-![Logo](https://media.githubusercontent.com/media/devexperts/dotMap/refs/heads/main/docs/images/logo.png)
+![Logo](https://media.githubusercontent.com/media/devexperts/dotMap/refs/heads/main/docs/images/logo.svg)
 
 # dotMap for .NET
 
@@ -1044,7 +1044,7 @@ internal class Destination : IMappable<Destination>
 
 - [ ] Add custom naming support
 
-See [open issues](https://github.com/dotMap/issues) for a full list of proposed features (and known issues).
+See [open issues](https://github.com/devexperts/dotMap/issues) for a full list of proposed features (and known issues).
 
 ## License
 

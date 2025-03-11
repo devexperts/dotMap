@@ -68,7 +68,7 @@ jobs:
         include: "dotMap/dotMap.csproj"
         regex: true
     
-    - name: Remove div opening tag
+    - name: Remove opening div tag
       uses: jacobtomlinson/gha-find-replace@v3
       with:
         find: '<div align="center">'
@@ -76,13 +76,20 @@ jobs:
         include: "README.md"
         regex: false
 
-    - name: Remove div closing tag
+    - name: Remove closing div tag
       uses: jacobtomlinson/gha-find-replace@v3
       with:
         find: '</div>'
         replace: ''
         include: "README.md"
         regex: false
+
+    - name: Convert svg icon to png for the nuget
+      uses: joseaeltala/convert-svg-to-png/@master
+      with:
+        file: "docs/images/logo.svg"
+        path: "docs/images"
+        name: "logo.png"
 
     - name: Build and pack
       run: dotnet pack dotMap/dotMap.csproj -c Release
