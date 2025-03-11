@@ -212,10 +212,10 @@ internal class Metadata
 
 	private IReadOnlyList<string> GetUsings(SyntaxNode mapSyntax, string template = "{0} {1};", SyntaxKind? prohibited = SyntaxKind.PrivateKeyword)
 	{
-		var namespaces = GetNamespaces(mapSyntax);
+		var namespaces = GetNamespaces(mapSyntax).ToList();
 		var usings = mapSyntax.SyntaxTree.GetCompilationUnitRoot().Usings.Select(u => string.Format(template, "using", u.Name?.ToFullString())).Concat(namespaces.Select(ns => string.Format(template, "using", ns)));
 		var types = mapSyntax.AncestorsAndSelf().OfType<BaseTypeDeclarationSyntax>().Reverse().ToList();
-		return types.Any() ? usings.Concat(GetStaticUsings(namespaces.Last(), types, template, prohibited)).ToList() : usings.ToList();
+		return types.Any() ? usings.Concat(GetStaticUsings(namespaces.LastOrDefault(), types, template, prohibited)).ToList() : usings.ToList();
 	}
 
 	private IEnumerable<string> GetNamespaces(SyntaxNode mapSyntax)
@@ -227,12 +227,13 @@ internal class Metadata
 		}
 	}
 
-	private IEnumerable<string> GetStaticUsings(string ns, IReadOnlyList<BaseTypeDeclarationSyntax> types, string template, SyntaxKind? prohibited)
+	private IEnumerable<string> GetStaticUsings(string? ns, IReadOnlyList<BaseTypeDeclarationSyntax> types, string template, SyntaxKind? prohibited)
 	{
 		for (var i = 0; i < types.Count; i++)
 		{
 			if (prohibited != null && types[i].Modifiers.Any(m => m.IsKind(prohibited.Value))) yield break;
-			yield return string.Format(template, "using static", $"{ns}.{string.Join(".", types.Take(i + 1).Select(t => t.Identifier.Text))}");
+			var typeNs = ns?.Insert(ns.Length, ".");
+			yield return string.Format(template, "using static", $"{typeNs}{string.Join(".", types.Take(i + 1).Select(t => t.Identifier.Text))}");
 		}
 	}
 
