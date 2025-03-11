@@ -5,6 +5,7 @@
    file, You can obtain one at https://mozilla.org/MPL/2.0/.
 */
 
+using dotMap;
 using dotMap.Tests.Nested1;
 using dotMap.Tests.Nested2;
 using FluentAssertions;
@@ -33,6 +34,26 @@ namespace dotMap.Tests
 
 			m2.Prop.Should().Be(m1.Prop);
 			m2.NestedProp.As<Nested3.Nested.Model2>().Prop.Should().Be(m1.NestedProp.Prop);
+		}
+		
+		[Fact]
+		public void When_map_global_model_Should_succeed()
+		{
+			var m1 = new NoNamespaceTestsModel1 { Prop = 5 };
+
+			var m2 = m1.MapToNoNamespaceTestsModel2();
+
+			m2.Prop.Should().Be(5);
+		}
+		
+		[Fact]
+		public void When_map_global_nested_model_Should_succeed()
+		{
+			var m1 = new NoNamespaceTestsModel1 { Prop = 5 };
+
+			var m2 = m1.MapToNoNamespaceTestsModel2NoNamespaceTestsNestedModel2();
+
+			m2.Prop.Should().Be(5);
 		}
 
 		private class NestedNamespaceConfiguration : IMapConfig
@@ -85,5 +106,22 @@ namespace dotMap.Tests
 				public int Prop { get; set; }
 			}
 		}
+	}
+}
+
+[MapTo(typeof(NoNamespaceTestsModel2))]
+public class NoNamespaceTestsModel1
+{
+	public int Prop { get; set; }
+}
+
+public class NoNamespaceTestsModel2
+{
+	public int Prop { get; set; }
+	
+	[MapFrom(typeof(NoNamespaceTestsModel1))]
+	public class NoNamespaceTestsNestedModel2
+	{
+		public int Prop { get; set; }
 	}
 }

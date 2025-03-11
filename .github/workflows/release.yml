@@ -67,6 +67,22 @@ jobs:
         replace: "<Version>${{env.release-version}}</Version>"
         include: "dotMap/dotMap.csproj"
         regex: true
+    
+    - name: Remove div opening tag
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+        find: '<div align="center">'
+        replace: ''
+        include: "README.md"
+        regex: false
+
+    - name: Remove div closing tag
+      uses: jacobtomlinson/gha-find-replace@v3
+      with:
+        find: '</div>'
+        replace: ''
+        include: "README.md"
+        regex: false
 
     - name: Build and pack
       run: dotnet pack dotMap/dotMap.csproj -c Release

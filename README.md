@@ -1,25 +1,23 @@
 <div align="center">
-
 [![NuGet](https://img.shields.io/nuget/v/dotMap)](https://www.nuget.org/packages/dotMap)
 [![License](https://img.shields.io/badge/LICENSE-MPL_2.0-green)](LICENSE)
 
-![Logo](docs/images/logo.png)
+![Logo](https://media.githubusercontent.com/media/devexperts/dotMap/refs/heads/main/docs/images/logo.png)
 
 # dotMap for .NET
 
 Convention-based object-to-object compile time mapper for .NET.
 
 It simplifies the process of transferring data between objects, reducing the need for manual mapping code. 
-<a href="https://github.com/devexperts/dotmap">dotMap</a> leverages a set of conventions to map properties 
+[dotMap](https://github.com/devexperts/dotmap) leverages a set of conventions to map properties 
 between source and destination types, minimizing configuration while maintaining flexibility. 
 This library is particularly useful in scenarios where objects have similar structures, 
 such as in data transfer objects (DTOs) and domain models, enabling developers 
 to focus more on business logic rather than boilerplate mapping code.
 
-<a href="https://github.com/devexperts/dotmap">dotMap</a> is ideal for developers looking for a streamlined and 
+[dotMap](https://github.com/devexperts/dotmap) is ideal for developers looking for a streamlined and 
 reliable solution for object mapping in .NET applications, improving code maintainability and reducing 
 the likelihood of errors during data transfer operations.
-
 </div>
 
 ## Table of contents
@@ -205,7 +203,7 @@ namespace dotMap.Tests.Examples
 #### Declarative configuration
 
 There are several mechanisms for defining a map configuration.
-One is to define a configuration in a separate class by implementing the `ConfigureMap`'` method, as follows.
+One is to define a configuration in a separate class by implementing the `ConfigureMap` method, as follows.
 
 ```csharp
 private class Configuration : IMapConfig
@@ -1042,8 +1040,6 @@ internal class Destination : IMappable<Destination>
 
 ## Roadmap
 
-- [ ] Add support for enumerable
-- [ ] Add kebab naming support
 - [ ] Add custom naming support
 
 See [open issues](https://github.com/dotMap/issues) for a full list of proposed features (and known issues).

@@ -12,6 +12,7 @@
     <Title>dotMap</Title>
     <Version>0.0.0</Version>
     <Description>Convention-based object-to-object compile time mapper for .NET</Description>
+    <PackageIconUrl>https://media.githubusercontent.com/media/devexperts/dotMap/refs/heads/main/docs/images/logo.png</PackageIconUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Company>Devexperts</Company>
