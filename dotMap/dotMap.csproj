@@ -12,7 +12,7 @@
     <Title>dotMap</Title>
     <Version>0.0.0</Version>
     <Description>Convention-based object-to-object compile time mapper for .NET</Description>
-    <PackageIconUrl>https://media.githubusercontent.com/media/devexperts/dotMap/refs/heads/main/docs/images/logo.png</PackageIconUrl>
+    <PackageIcon>logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Company>Devexperts</Company>
@@ -30,7 +30,8 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" PrivateAssets="All" />
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     <InternalsVisibleTo Include="dotMap.UnitTests" />
+    <None Include="..\docs\images\logo.png" Pack="true" PackagePath="\"/>
     <None Include="..\README.md" Pack="true" PackagePath="\"/>
-    <None Include="..\LICENSE" Pack="true" PackagePath=""/>
+    <None Include="..\LICENSE" Pack="true" PackagePath="\"/>
   </ItemGroup>	
 </Project>
