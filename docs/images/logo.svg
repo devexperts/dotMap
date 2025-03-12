@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c4bb4646c499145d63757267f026de6ece947e2b75c1648639f9e28f77b6bae5
-size 728
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1_2)">
+<line x1="107" y1="110" x2="107" y2="18" stroke="#512AD4" stroke-width="12"/>
+<line x1="21" y1="110" x2="21" y2="18" stroke="#512AD4" stroke-width="12"/>
+<path d="M18 107H110" stroke="#512AD4" stroke-width="12"/>
+<line x1="18" y1="21" x2="110" y2="21" stroke="#512AD4" stroke-width="12"/>
+<circle cx="107" cy="107" r="21" fill="#512AD4"/>
+<circle cx="21" cy="107" r="21" fill="#512AD4"/>
+<circle cx="107" cy="21" r="21" fill="#512AD4"/>
+<circle cx="21" cy="21" r="21" fill="#512AD4"/>
+</g>
+<defs>
+<clipPath id="clip0_1_2">
+<rect width="128" height="128" fill="white"/>
+</clipPath>
+</defs>
+</svg>
