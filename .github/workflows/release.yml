@@ -85,11 +85,9 @@ jobs:
         regex: false
 
     - name: Convert svg icon to png for the nuget
-      uses: joseaeltala/convert-svg-to-png/@master
-      with:
-        file: "docs/images/logo.svg"
-        path: "docs/images"
-        name: "logo.png"
+      run: |
+        sudo apt install librsvg2-bin
+        rsvg-convert -o ${{github.workspace}}/docs/images/logo.png ${{github.workspace}}/docs/images/logo.svg
 
     - name: Build and pack
       run: dotnet pack dotMap/dotMap.csproj -c Release
