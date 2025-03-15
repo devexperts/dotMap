@@ -2,6 +2,7 @@
   
 [![NuGet](https://img.shields.io/nuget/v/dotMap)](https://www.nuget.org/packages/dotMap)
 [![License](https://img.shields.io/badge/LICENSE-MPL_2.0-green)](LICENSE)
+[![Build](https://img.shields.io/github/check-runs/devexperts/dotMap/main)](https://github.com/devexperts/dotMap/actions/workflows/ci.yml)
 
 ![Logo](https://raw.githubusercontent.com/devexperts/dotMap/refs/heads/main/docs/images/logo.svg)
 
